@@ -32,12 +32,15 @@ public class AuthorService {
     }
 
     public AuthorEntity deleteAuthor(int AuthorEntityId) {
-        Optional<AuthorEntity> optional = repository.findById(String.valueOf(AuthorEntityId));
+        Optional<AuthorEntity> optional = repository.findById(AuthorEntityId);
         if (optional.isPresent()) {
             repository.delete(optional.get());
             return optional.get();
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"AuthorEntity." + AuthorEntityId + " not found");
         }
+    }
+    public AuthorEntity findByName(String name){
+        return repository.findByName(name);
     }
 }
