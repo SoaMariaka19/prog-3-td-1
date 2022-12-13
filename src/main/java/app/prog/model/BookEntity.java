@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "book")
@@ -20,8 +21,10 @@ public class BookEntity {
     private int id;
     private String title;
     @ManyToOne
-    @JoinColumn(name = "author")
+    @JoinColumn(name = "author",referencedColumnName = "name")
     private AuthorEntity author;
+    @ManyToMany
+    private List<CategoryEntity> categories;
     private Integer pageNumber;
     private LocalDate releaseDate;
 
